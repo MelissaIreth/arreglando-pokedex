@@ -1,0 +1,59 @@
+.navbar{
+	min-height: 60px;
+	background-color: #f7ce1e;
+	font-weight: bolder;
+	color: black;
+	border-radius: 0;
+}
+
+.form-control{
+	border: 0;
+	box-shadow: none;
+	border-bottom: 1px solid gray;
+	border-radius: 0;
+}
+.search{
+	padding-bottom: 10px;
+}
+
+.thepoke{
+	color: black;
+	display: inline-block;
+	width: 40%;
+	height: 180px;
+	padding: 5px;
+	cursor: pointer;
+}
+
+.pokeImg{
+	width: 80px;
+	height: 80px;
+}
+
+.pname{
+	font-weight: bolder;
+	font-size: 1.5em;
+	text-transform: uppercase;
+	padding: 5px;
+}
+
+a.arrow{
+	font-size: 2em;
+	font-weight: 200;
+	color: black;
+}
+
+.pokemodal{
+	width: 100px;
+	height: 200px;
+}
+
+footer{
+	background-color: #f7ce1e;
+	padding: 20px;
+}
+
+.modalpoke{
+	margin: 10px;
+	font-weight: bolder;
+}
