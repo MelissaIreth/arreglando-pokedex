@@ -8,7 +8,6 @@ $(document).ready(function(){
 	.done(function(respuesta){
 		console.log(respuesta)
 		mostrarPokemon(respuesta.results)
-		habilidades(respuesta.results)
 		console.log("succes");
 	})
 	.fail(function(){
@@ -21,27 +20,32 @@ $(document).ready(function(){
 	var mostrarPokemon = function(data){
 
 	    data.forEach(function(e){
-	    	var pokeName = e.name;;
+	    	var pokeName = e.name;
 	    	$("#pokepoke").append("<div class='thepoke'><img class='pokeImg' src='http://img.pokemondb.net/artwork/"+ pokeName + ".jpg'><span class='pname'>"+ pokeName +"</span><a class='modalpoke'><img src='assets/img/favicon.ico'></a><p></p></div> ");
 	    })
 	};
 
 	var habilidades = function(d){
-
+		
 		d.forEach(function(a){
-			var ab = a.ability.name;
-			$(".thepoke").append('<p class="hab">'+a.name+'</p>')
+			var ab = a.name;
+			$(".thepoke").append('<p class="hab">'+ab+'</p>')
 
 		})
+		
+	};
 
+	
 		$.ajax({
-			url: 'http://pokeapi.co/api/v2/ability/',
+			url: 'http://pokeapi.co/api/v2/ability',
 			type: 'GET',
 			dataType: 'json',
 			data: {'limit': '10'},
 		})
-		.done(function() {
+		.done(function(res) {
 			console.log("success");
+			habilidades(res.results)
+
 		})
 		.fail(function() {
 			console.log("error");
@@ -49,8 +53,9 @@ $(document).ready(function(){
 		.always(function() {
 			console.log("complete");
 		});
-		
-	}
+
+
+
 
 });
 /* Esta es una manera que encontre de hacer el modal, 
@@ -139,6 +144,51 @@ está sin info dentro ya que primero quería lograr que se abriera el modal
 	$.get('ajax.html', function(data){
   	modal.open({content: data});
 });
+
+
+	var habilidades = function(url){
+		$.ajax({
+			url: url,
+			type: 'GET',
+			dataType: 'json',
+			data: {'limit': '10'},
+		})
+	.done(function(respuesta) {
+		console.log(respuesta);
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+
+
+
+	$.ajax({
+		url: 'http://pokeapi.co/api/v2/pokemon/',
+		type: 'GET',
+		dataType: 'JSON',
+		data: {'limit': '10'},
+	})
+	.done(function(respuesta){
+		console.log(respuesta)
+		mostrarPokemon(respuesta.results)
+		respuesta.results.forEach(function(a){
+			habilidades(a.url)
+			$(".thepoke").append('<p class="hab">'+habilidades(a.url)+'</p>')
+		console.log("succes");
+	})
+	});
+	
+
+	var mostrarPokemon = function(data){
+
+	    data.forEach(function(e){
+	    	var pokeName = e.name;
+	    	$("#pokepoke").append("<div class='thepoke'><img class='pokeImg' src='http://img.pokemondb.net/artwork/"+ pokeName + ".jpg'><span class='pname'>"+ pokeName +"</span><a class='modalpoke'><img src='assets/img/favicon.ico'></a><p></p></div> ");
+	    })
+	};
 
 			
 */
